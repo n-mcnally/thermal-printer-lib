@@ -2,6 +2,10 @@ import {
   printer as ThermalPrinter,
   types as PrinterTypes,
 } from 'node-thermal-printer';
+import {
+  DEFAULT_DISCOVER_TIMEOUT,
+  DEFAULT_PRINTER_PORT,
+} from '../core/discovery';
 import PrinterComponentBase from './component-base';
 import { PrinterError, PRINTER_ERROR } from './error';
 
@@ -15,11 +19,12 @@ export class PrinterInstance {
   constructor(
     private address?: string,
     private name: string = 'Receipt Printer 1',
-    private timeout: number = 5000,
-    type: PrinterTypes = PrinterTypes.EPSON
+    private timeout: number = DEFAULT_DISCOVER_TIMEOUT,
+    type: PrinterTypes = PrinterTypes.EPSON,
+    port = DEFAULT_PRINTER_PORT
   ) {
     this.printer = new ThermalPrinter({
-      interface: `tcp://${address ?? 'BUFFER_USE_ONLY'}`,
+      interface: `tcp://${address ?? 'BUFFER_USE_ONLY'}:${port}`,
       type,
       options: { timeout },
     });

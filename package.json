@@ -33,6 +33,13 @@
   },
   "name": "thermal-printer-lib",
   "author": "Nathan Mcnally",
+  "keywords": [
+    "typescript",
+    "node",
+    "thermal printer",
+    "epson",
+    "receipt printer"
+  ],
   "module": "dist/thermal-printer-lib.esm.js",
   "size-limit": [
     {
