@@ -4,6 +4,10 @@ A set of useful utilities for working with ip thermal printers.
 
 Provides abstractions for creating prop-driven, reusable presets and components and discovering printers on a network.
 
+Uses the [node-thermal-printer](https://www.npmjs.com/package/node-thermal-printer) library for buffer creation and printing.
+
+> You can get a reference to the underlying `node-thermal-printer` instance by calling the `getPrinter` method.
+
 ## Basic usage
 
 ---
@@ -23,8 +27,10 @@ instance.apply([
   }),
 ]);
 
-await instance.flush(true, true);
+await instance.flush(true, true, true);
 ```
+
+> The `flush` method provides optional parameters for _cut_, _open cash drawer_ and _beep_. (if available)
 
 ### Usage with buffers
 
@@ -54,6 +60,27 @@ await instance.connect();
 instance.addBase64EncodedBuffer(encodedBuffer);
 
 await instance.flush(true, true);
+```
+
+### Using the `node-thermal-printer` instance
+
+---
+
+Access the underlying instance by calling the `getPrinter` method.
+
+> The packages `printer` interface is re-exported as `ThermalPrinter`.
+
+```ts
+const instance = new PrinterInstance();
+
+const printer: ThermalPrinter = instance.getPrinter();
+
+// same output as the `ReceiptText` component in the above example
+printer.alignTextCenter();
+printer.bold(true);
+printer.printLn('Hello world');
+printer.bold(false);
+printer.alignTextLeft();
 ```
 
 ### Custom components
@@ -123,7 +150,11 @@ Easily search for printers on a network by providing an ip, subnet or ip-range.
 ```ts
 const discovered = await discoverPrinters('192.168.1.0/24');
 
-console.log(discovered);
+discovered.forEach(discoveredPrinter => {
+  console.log(discoveredPrinter);
+});
 
-// [ { ip: string, mac: string, latency: number }, ... ]
+// > { ip: '192.168.1.10', mac: "...", latency: 12 }
+// > { ip: '192.168.1.11', mac: "...", latency: 114 }
+// > { ip: '192.168.1.12', mac: "...", latency: 67 }
 ```
