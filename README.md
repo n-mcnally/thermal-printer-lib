@@ -109,10 +109,7 @@ class ReceiptBoldText extends PrinterComponentBase {
 }
 
 // now can be applied like so
-instance.apply([
-  new ReceiptBoldText('Hello world'),
-  new ReceiptBoldText('This is on the next line'),
-]);
+instance.apply(new ReceiptBoldText('Hello world'));
 ```
 
 ### Custom presets
@@ -140,8 +137,10 @@ function simpleEposReceiptPreset(props: SimpleReceiptPresetProps) {
   ];
 }
 
-// the just pass the function result to `instance.apply` to use
-instance.apply(simpleEposReceiptPreset({ items: ['Item one', 'Item two'] }));
+const result = simpleEposReceiptPreset({ items: ['Item one', 'Item two'] });
+
+// apply the result to the instance
+instance.apply(result);
 ```
 
 ### Discover network printers
