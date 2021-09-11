@@ -118,6 +118,13 @@ export class PrinterInstance {
       );
     }
 
+    if (!this.isConnected) {
+      throw new PrinterError(
+        PRINTER_ERROR.NO_CONNECTION,
+        'cannot flush, instance is not connected'
+      );
+    }
+
     if (cut) {
       this.printer.cut();
     }
