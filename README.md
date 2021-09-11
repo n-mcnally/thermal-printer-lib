@@ -51,7 +51,7 @@ bufferOnlyInstance.apply([
 
 const encodedBuffer = bufferOnlyInstance.getBase64EncodedBuffer(true);
 
-// then you can pass this string to a connected buffer later to be printed
+// then you can pass this string to a connected instance later to be printed
 
 const instance = new PrinterInstance('192.168.1.10');
 
@@ -89,9 +89,9 @@ printer.alignTextLeft();
 
 A component is a simple way to abstract code that may be called many times
 across receipts. A few basic components are provided for you but you can create
-custom ones for your use case.
+custom ones for your own use case.
 
-When applied the components `apply` method is called passing with the current instance.
+When applied the components `apply` method is called passing it the current instance.
 
 A component should always reset any changes it's applied.
 
@@ -139,6 +139,9 @@ function simpleEposReceiptPreset(props: SimpleReceiptPresetProps) {
     }),
   ];
 }
+
+// the just pass the function result to `instance.apply` to use
+instance.apply(simpleEposReceiptPreset({ items: ['Item one', 'Item two'] }));
 ```
 
 ### Discover network printers
