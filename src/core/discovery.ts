@@ -68,6 +68,10 @@ export async function discoverPrinters(
 ): Promise<DiscoveredPrinter[]> {
   let devices = await localDevices(address);
 
+  if (!devices) {
+    return [];
+  }
+
   if (!Array.isArray(devices)) {
     devices = [devices];
   }
@@ -109,7 +113,13 @@ export async function getIpFromMacAddress(
   mac: string,
   searchAddress?: string
 ): Promise<string | null> {
-  const devices = await localDevices(searchAddress);
+  let devices = await localDevices(searchAddress);
+
+  if (!devices) {
+    return null;
+  }
+
+  !Array.isArray(devices) && (devices = [devices]);
 
   const match = devices.find(device => device.mac === mac);
 
@@ -135,7 +145,6 @@ export async function checkPrinterConnection(
     return false;
   }
 
-  // ensure type is correct (return object with single ip)
   !Array.isArray(devices) && (devices = [devices]);
 
   const match = devices.find(device => device.mac === mac);
