@@ -24,3 +24,5 @@ export class ReceiptVatNumber extends PrinterComponentBase {
     printer.alignLeft();
   }
 }
+
+export default ReceiptVatNumber;

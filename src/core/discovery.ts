@@ -94,7 +94,7 @@ export async function discoverPrinters(
 }
 
 /**
- * @param macAddress
+ * @param mac
  *    the mac address to look for
  * @param address
  *    Override the default address condition (local network) when required for
@@ -106,12 +106,12 @@ export async function discoverPrinters(
  *      * `192.168.1.10-192.168.1.20` - ip range
  */
 export async function getIpFromMacAddress(
-  macAddress: string,
+  mac: string,
   searchAddress?: string
 ): Promise<string | null> {
   const devices = await localDevices(searchAddress);
 
-  const match = devices.find(device => device.mac === macAddress);
+  const match = devices.find(device => device.mac === mac);
 
   if (!match) {
     return null;

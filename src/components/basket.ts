@@ -29,7 +29,7 @@ function formatPrice(penceValue = 0): string {
   return `${pounds.toLocaleString()}.${pence.toString().padStart(2, '0')}`;
 }
 
-class ReceiptBasket extends PrinterComponentBase {
+export class ReceiptBasket extends PrinterComponentBase {
   constructor(private props: ReceiptBasketProps) {
     super();
   }

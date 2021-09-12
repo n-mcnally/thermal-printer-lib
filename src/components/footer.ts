@@ -8,7 +8,7 @@ export type ReceiptFooterProps = {
   text?: string;
 };
 
-class ReceiptFooter extends PrinterComponentBase {
+export class ReceiptFooter extends PrinterComponentBase {
   constructor(private props?: ReceiptFooterProps) {
     super();
   }

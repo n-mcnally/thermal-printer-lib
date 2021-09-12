@@ -49,7 +49,7 @@ bufferOnlyInstance.apply([
   }),
 ]);
 
-const encodedBuffer = bufferOnlyInstance.getBase64EncodedBuffer(true);
+const encodedBuffer = bufferOnlyInstance.getBase64EncodedBuffer();
 
 // then you can pass this string to a connected instance later to be printed
 
@@ -59,7 +59,7 @@ await instance.connect();
 
 instance.addBase64EncodedBuffer(encodedBuffer);
 
-await instance.flush(true, true);
+await instance.flush();
 ```
 
 ### Using the `node-thermal-printer` instance
@@ -134,6 +134,12 @@ function simpleEposReceiptPreset(props: SimpleReceiptPresetProps) {
     new ReceiptFooter({
       customerCopy: false,
     }),
+    // you can also use the `ReceiptCustom` component here
+    new ReceiptCustom((instance: PrinterInstance) => {
+      const printer: ThermalPrinter = instance.getPrinter();
+
+      printer.printLn('custom line');
+    }),
   ];
 }
 
@@ -142,6 +148,8 @@ const result = simpleEposReceiptPreset({ items: ['Item one', 'Item two'] });
 // apply the result to the instance
 instance.apply(result);
 ```
+
+> The `createEncodedBufferFromPreset` function handles instance creation and returns a base64 encoded string.
 
 ### Discover network printers
 
@@ -159,4 +167,24 @@ discovered.forEach(discoveredPrinter => {
 // > { ip: '192.168.1.10', mac: "...", latency: 12 }
 // > { ip: '192.168.1.11', mac: "...", latency: 114 }
 // > { ip: '192.168.1.12', mac: "...", latency: 67 }
+```
+
+There are also a few other helpful network utilities provided:
+
+- _checkRemotePortOpen_
+
+```ts
+(address: string, port?: number, timeout?: number) => Promise<boolean>
+```
+
+- _getIpFromMacAddress_
+
+```ts
+(mac: string, searchAddress?: string) => Promise<boolean>
+```
+
+- _checkPrinterConnection_
+
+```ts
+(ip: string, mac: string, port?: number, timeout?: number) => Promise<boolean>
 ```

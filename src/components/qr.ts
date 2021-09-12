@@ -11,7 +11,7 @@ export type ReceiptQrCodeProps = {
   value: string;
 };
 
-class ReceiptQrCode extends PrinterComponentBase {
+export class ReceiptQrCode extends PrinterComponentBase {
   constructor(private props: ReceiptQrCodeProps) {
     super();
   }

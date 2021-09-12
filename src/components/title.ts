@@ -12,7 +12,7 @@ export type ReceiptTitleProps = {
   servedBy: string;
 };
 
-class ReceiptTitle extends PrinterComponentBase {
+export class ReceiptTitle extends PrinterComponentBase {
   constructor(private props: ReceiptTitleProps) {
     super();
   }

@@ -14,7 +14,7 @@ function getDateString(): string {
   );
 }
 
-class ReceiptMeta extends PrinterComponentBase {
+export class ReceiptMeta extends PrinterComponentBase {
   constructor(private servedBy: string) {
     super();
   }
