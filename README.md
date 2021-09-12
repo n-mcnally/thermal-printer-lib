@@ -180,7 +180,7 @@ There are also a few other helpful network utilities provided:
 - _getIpFromMacAddress_
 
 ```ts
-(mac: string, searchAddress?: string) => Promise<boolean>
+(mac: string, searchAddress?: string) => Promise<string>
 ```
 
 - _checkPrinterConnection_
