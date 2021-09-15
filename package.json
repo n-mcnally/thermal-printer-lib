@@ -40,6 +40,10 @@
     "epson",
     "receipt printer"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/n-mcnally/thermal-printer-lib.git"
+  },
   "module": "dist/thermal-printer-lib.esm.js",
   "size-limit": [
     {
