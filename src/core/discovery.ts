@@ -138,7 +138,7 @@ export async function checkPrinterConnection(
   mac: string,
   port = DEFAULT_PRINTER_PORT,
   timeout = DEFAULT_DISCOVER_TIMEOUT
-): Promise<boolean> {
+): Promise<number | false> {
   let devices = await localDevices(ip);
 
   if (!devices) {
@@ -153,7 +153,5 @@ export async function checkPrinterConnection(
     return false;
   }
 
-  const isPortOpen = await checkRemotePortOpen(ip, port, timeout);
-
-  return isPortOpen !== false;
+  return checkRemotePortOpen(ip, port, timeout);
 }
