@@ -1,4 +1,4 @@
-import discoverPrinters from '../core/discovery';
+import discoverPrinters from '../core/discover-printers';
 
 export const printerDiscoveryExample = async () => {
   const discoveredPrinters = await discoverPrinters();

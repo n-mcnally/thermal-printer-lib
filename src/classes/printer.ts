@@ -5,7 +5,7 @@ import {
 import {
   DEFAULT_DISCOVER_TIMEOUT,
   DEFAULT_PRINTER_PORT,
-} from '../core/discovery';
+} from '../core/discover-printers';
 import PrinterComponentBase from './component-base';
 import { PrinterError, PRINTER_ERROR } from './error';
 

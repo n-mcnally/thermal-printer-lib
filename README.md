@@ -32,6 +32,22 @@ await instance.flush(true, true, true);
 
 > The `flush` method provides optional parameters for _cut_, _open cash drawer_ and _beep_. (if available)
 
+All components are fully typed so their props can be easily inspected.
+
+- Basket \*
+- Custom
+- Cut
+- Footer
+- Hr
+- LeftRight
+- Meta \*
+- Qr
+- Text
+- Title \*
+- Vat-Number \*
+
+> `*` composed of other components
+
 ### Usage with buffers
 
 ---
